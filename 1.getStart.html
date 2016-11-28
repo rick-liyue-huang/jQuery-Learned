@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.12.3.js"></script>
+</head>
+<body>
+    <ul id="list1">
+        <li id="one" class="rest" lang="en">item</li>
+        <li id="two"><span>item </span>item</li>
+        <li id="three" class="rest">item</li>
+        <li lang="fr"> content</li>
+        <li><span>item</span></li>
+        <span>item</span>
+        <li>item</li>
+    </ul>
+
+    <ul id="list2">
+        <li>item</li>
+        <li>item</li>
+        <li>item</li>
+        <li>item</li>
+    </ul>
+
+<script>
+
+    /*
+    * jQuery is a lightweight multi-browser JS library that is designed to make it easier to incorporate js feature
+    * on website.-- write less do more
+    *
+    *   recognizing readiness
+    * */
+//    $(document).ready(function () {
+//        // statements to be executed when the document is ready
+//        console.log("jQuery is ready");
+//    });
+    $(function () {
+        console.log("an another ready state");
+
+        // tag selector
+        $("li").text("generated content"); // will change the text content
+
+        // id selector
+        $("#two").text("the number two content");
+
+        // class selector
+        $(".rest").text("the rest class content");
+
+        // attribute selector
+        $('[lang="fr"]').text("the france content");
+
+        // filter selector
+        $('li:even').text("even lines content");
+        $('li:lt(2)').text("less 2 content"); // line1 and line 2 are changed
+
+        // descendant selector
+        $('ul span').text('span content');
+
+        // child filter
+        $('li:first-child').text("first child content");
+
+        // multiple elements
+        $("#list1 li:eq(2), #list2 li:eq(1)").text("multiple content");
+        $('#list2 li:lt(3)').css("border", "1px solid red");
+    });
+
+
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

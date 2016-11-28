@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.12.3.js"></script>
+</head>
+<body>
+
+<!--<form action="">-->
+    <!--<input type="text" name="user" value="Rick">-->
+    <!--<input type="text" name="addr" value="broadway">-->
+    <!--<input type="text" name="city" value="new york">-->
+<!--</form>-->
+<!--<p>output: <span id="outer"></span></p>-->
+
+<!--<form action="">-->
+    <!--<textarea name="content" id="" cols="30" rows="3"></textarea>-->
+<!--</form>-->
+<!--<p>output: <span id="out1"></span></p>-->
+
+<!--<form action="">-->
+    <!--<input type="text" name="a" value="alpha">-->
+    <!--<input type="text" name="b" value="bravo">-->
+    <!--<input type="text" name="c" value="charlie">-->
+<!--</form>-->
+<!--<p>output: <span id="out2"></span></p>-->
+
+<!--<form action="">-->
+    <!--<input type="text" name="a" value="alpha" disabled>-->
+    <!--<input type="text" name="b" value="bravo" disabled>-->
+    <!--<input type="text" name="c" value="charlie" disabled>-->
+<!--</form>-->
+<!--<p>output: <span id="out3"></span></p>-->
+
+
+<!--<form action="">-->
+    <!--one<input type="radio" name="btn" value="one">-->
+    <!--two<input type="radio" name="btn" value="two">-->
+    <!--three<input type="radio" name="btn" value="three">-->
+<!--</form>-->
+<!--<p>output: <span id="out4"></span></p>-->
+
+<!--<form action="">-->
+    <!--one<input type="checkbox" name="box1" value="1">-->
+    <!--two<input type="checkbox" name="box2" value="2">-->
+    <!--three<input type="checkbox" name="box3" value="3">-->
+<!--</form>-->
+<!--<p>output: <span id="out5"></span></p>-->
+
+<!--<form action="">-->
+    <!--<select name="" id="">-->
+        <!--<option value="one">one</option>-->
+        <!--<option value="two">two</option>-->
+        <!--<option value="three">three</option>-->
+    <!--</select>-->
+<!--</form>-->
+<!--<p>output: <span id="out6"></span></p>-->
+
+<!--<form action="">-->
+    <!--<input type="button" value="regular button">-->
+    <!--<button>element button</button>-->
+<!--</form>-->
+<!--<p>output: <span id="out7"></span></p>-->
+
+<!--<form action="">-->
+    <!--<input type="button" value="regular button">-->
+    <!--<input type="reset" value="reset button">-->
+    <!--<input type="submit" value="submit button">-->
+<!--</form>-->
+<!--<p>output: <span id="out8"></span></p>-->
+
+<!--<form enctype="multipart/form-data" method="post" action="file.php">-->
+    <!--<input type="file" name="userfile" size="50">-->
+    <!--<input type="image" src="tick.png" alt="action">-->
+    <!--<input type="submit">-->
+<!--</form>-->
+<!--<p>output: <span id="out9"></span></p>-->
+
+<!--<form action="">-->
+    <!--<input type="text" name="a" value="jQuery">-->
+    <!--<input type="text" name="b" value="in easy step">-->
+<!--</form>-->
+<!--<p>output: <span id="out10"></span></p>-->
+
+<form action="submit.php" method="post">
+    name: <input type="text" name="name">
+    city: <input type="text" name="city">
+    <br><br>
+    <input type="submit">
+</form>
+<p>output: <span id="out11"></span></p>
+
+<script>
+
+    $(function () {
+        var user = $("input[type='text']").eq(0).val();
+        $('#outer').text(user);
+        $("input[type='text']").eq(0).val("replaced content");
+
+
+        // about textarea
+        var content = $("textarea[name='content']");
+        content.val("text area content");
+        $("#out1").text(content.val());
+
+        // selecting by ability
+        var box3 = $("input[type='text']").eq(2);
+        box3.prop("disabled", true);
+
+        if(box3.prop("disabled") === true) {
+            $("#out2").text(box3.val() + " disabled");
+        }
+
+        var box4 = $("input[type='text']").eq(2);
+        box4.prop("disabled", false);
+
+        if (box4.prop("disabled") === false) {
+            $("#out3").text(box4.val() + " enabled");
+        }
+
+        // about radio
+        var rad3 = $("input[type='radio']").eq(2);
+        rad3.prop("checked", true);
+
+        if (rad3.prop("checked") === true) {
+            $("#out4").text(rad3.val() + " checked");
+        }
+
+        // about checkbox
+        var chk3 = $("input[type='checkbox']").eq(2);
+        chk3.prop("checked", true);
+
+        if(chk3.prop("checked") === true) {
+            $("#out5").text(chk3.val() + " checked");
+        }
+
+        // options
+        var opt3 = $("option[value='three']");
+        opt3.prop("selected", true);
+
+//        if(opt3.prop("selected") === true) {
+//            $("#out6").text(opt3.val() + " selected");
+//        }
+
+        // change() method
+        $("select").change(
+                function () {
+                    var pick = $("option").filter(":selected");
+                    $("#out6").text(pick.val() + " selected");
+                }
+        );
+
+
+        var btns = $("input[type='button'], button");
+        btns.css("border", "3px solid red");
+        $("#out7").text(btns.length + " buttons selected");
+
+
+        var btns2 = $("input[type='submit'], input[type='reset']");
+        btns2.css("border", '2px solid blue');
+        $("#out8").text(btns2.length + " buttons selected");
+
+
+        // selecting file input
+        $("input[type='file']").change(
+                function () {
+                    $("#out9").text($(this).val());
+                }
+        );
+
+        var img = $("input[type='image']");
+        img.val("action button");
+
+
+        // recognizing focus
+        var txt = $("input[type='text']").eq(0);
+        var out = $("#out10");
+        txt.focus(function () {
+            out.text("active");
+        });
+        txt.blur(function () {
+            out.text("inactive");
+        });
+
+        var frm = $("form");
+        frm.focus(function () {
+            out.text("form active");
+        });
+        frm.blur(function () {
+            out.text("form inactive");
+        });
+
+
+        // submitting forms
+        $("form").submit(
+                function () {
+                    if(confirm("submit form?")) {
+                        return true;
+                    } else {
+                        $("#out11").text("form submission cancelled");
+                        return false;
+                    }
+                }
+        )
+
+
+    });
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

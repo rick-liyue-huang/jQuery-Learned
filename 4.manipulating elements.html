@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.12.3.js"></script>
+    <style>
+        /*div {*/
+            /*background: yellow;*/
+            /*border: 3px solid red;*/
+            /*width: 300px;*/
+        /*}*/
+    </style>
+</head>
+<body>
+
+    <!--<p>new text:-->
+        <!--<span id="new">java in easy stpes</span>-->
+    <!--</p>-->
+    <!--<p>old text:-->
+        <!--<span id="old"></span>-->
+    <!--</p>-->
+
+    <!--<ul>-->
+        <!--<li>Apple</li>-->
+        <!--<li>banana</li>-->
+        <!--<li>cherry</li>-->
+    <!--</ul>-->
+    <!--<p>output: <span id="out1"></span></p>-->
+
+    <!--<p><img src="ffox.png" alt="firefox"></p>-->
+    <!--<br>output: <span id="out2"></span>-->
+
+    <!--<form action="">-->
+        <!--<input id="box1" type="checkbox" checked>-->
+        <!--<input id="box2" type="checkbox" checked>-->
+    <!--</form>-->
+    <!--<p>Box1 checked?: <span id="out3"></span> <br>-->
+        <!--box2 checked?: <span id="out4"></span>-->
+    <!--</p>-->
+
+    <!--<ul>-->
+        <!--<li>apple</li>-->
+        <!--<li>banana</li>-->
+        <!--<li>cherry</li>-->
+    <!--</ul>-->
+
+    <!--<ol id="abc">-->
+        <!--<li>alpha</li>-->
+        <!--<li>bravo</li>-->
+        <!--<li>charlie</li>-->
+    <!--</ol>-->
+
+    <!--<ol id="xyz">-->
+        <!--<li>xray</li>-->
+        <!--<li>yankee</li>-->
+        <!--<li>zulu</li>-->
+    <!--</ol>-->
+
+    <!--<ul>-->
+        <!--<li>one</li>-->
+        <!--<li>two</li>-->
+        <!--<li>three</li>-->
+    <!--</ul>-->
+    <!--<p>output: <span id="out5"></span></p>-->
+
+    <!--<ol>-->
+        <!--<li>one</li>-->
+        <!--<li>two</li>-->
+        <!--<li>three</li>-->
+    <!--</ol>-->
+
+    <!--<div id="box">-->
+        <!--division text-->
+        <!--<p id="txt">paragraph text <span>span text</span></p>-->
+    <!--</div>-->
+    <!--<p>paragraph emptied: <span id="out6"></span>-->
+        <!--<br><span id="out7"></span></p>-->
+
+    <img id="pic" src="roadster.png" alt="">
+    <p>output: <span id="out8"></span></p>
+
+<script>
+    $(function () {
+
+//        // change content
+//        $("#new").text(
+//                function (i, txt) {
+//                    $("#old").text(txt);
+//                    return "c programming in easy step";
+//                }
+//        );
+//
+//        $("ul").html(
+//                function (i, html) {
+//                    $("#out1").text(html);
+//                    return "<li>anmson</li><li>elderberry</li><li>fig</li>"
+//                }
+//        );
+//
+//
+//        var img = $("img[alt='firefox']");
+//        img.attr({
+//            "src": "tbird.png",
+//            "alt": "Thunderbird"
+//        });
+//
+//        $("#out2").text(img.attr("alt"));
+//
+//        var b1 = $("#box1"), b2 = $("#box2");
+//        b1.removeAttr("checked");
+//
+//        $("#out3").text(b1.prop("checked") + " | " + b1.attr("checked"));
+//        $("#out4").text(b2.prop("checked") + " | " + b2.attr("checked"));
+//
+//        var list = $("ul");
+////        console.log(list);
+////        list.before(" + Befor");
+////        list.after(" + After");
+////
+////        list.prepend("< prepend");
+////        list.append("> append");
+//
+//        $("<p>+ Before</p>").insertBefore(list);
+//        $("<p>+ After</p>").insertAfter(list);
+//
+//        $("<p>< prepend</p>").prependTo(list);
+//        $("<p> > append </p>").appendTo(list);
+//
+//        // wrapping element
+//        $("#abc, #xyz").wrap("<div></div>");
+//        $("#abc").unwrap("<div></div>");
+//        $("#abc li").wrapInner("<div></div>");
+
+        // replacing element
+//        var list = $("ul");
+//        $("#out5").text(list.html());
+//
+//        list.replaceWith("<ol>" + list.html() + "</ol>");
+//        $("<li>list item</li>").replaceAll("li");
+
+        var list = $("ol");
+        list.clone().insertAfter(list);
+
+        list.css("list-style-type", "upper-alphabet");
+        list.html("<li>alpha</li><li>bravo</li><li>charlie</li>");
+
+        // removing element
+        var parent = $("#box"), child = $("#txt");
+        child.empty();
+        $("#out6").text(parent.html());
+
+        child.remove();
+        $("#out7").text(parent.html());
+
+        // attching data
+        var pic = $("#pic");
+        pic.data("make", "jaguar");
+        pic.data("model", "f-type");
+
+        $("#out8").text(pic.data("make") + " " + pic.data("model"));
+
+        pic.removeData("make");
+        $("#out8").text(pic.data("make") + pic.data("model"));
+
+        pic.data("info", {
+            make: "lamborghini",
+            model: "gallardo",
+            version: "spyder"
+        });
+
+        $("#out8").text(pic.data("info").make + " " + pic.data("info").model
+        + " " + pic.data("info").version);
+
+    });
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

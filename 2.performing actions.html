@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.12.3.js"></script>
+    <style>
+        ol {
+            color: red;
+        }
+
+        .W300 {
+            width: 300px;
+        }
+        .yelFG {
+            color: yellow;
+        }
+        .redBG {
+            background-color: red;
+        }
+
+        #box {
+            width: 200px;
+            height: 50px;
+            background: yellow;
+            padding: 5px;
+            border: 5px solid red;
+        }
+    </style>
+</head>
+<body>
+
+<ul>
+    <li id="item1">item</li>
+    <li>item</li>
+    <li>item</li>
+    <li>item</li>
+    <li id="item5">item</li>
+</ul>
+
+<ul id="list1">
+    <li id="item11">item</li>
+    <li>item</li>
+    <li>item</li>
+    <li>item</li>
+    <li id="item55">item</li>
+</ul>
+
+<ul id="a">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+
+<ul id="b">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li><span></span></li>
+</ul>
+
+<div>
+    <p>paragraph containing <em>emphatic text</em></p>
+    <p>output: <span id="out"></span></p>
+</div>
+
+<ol>
+    <li>alpha</li>
+    <li>bravo</li>
+    <li>charlie</li>
+</ol>
+<p>output: <span id="outter"></span></p>
+
+<ol id="list">
+    <li>alpha</li>
+    <li>bravo</li>
+    <li>charlie</li>
+</ol>
+
+<div id="box">
+    Box
+</div>
+<p>box width: <span id="w"></span>
+    <br>
+    box height: <span id="h"></span>
+</p>
+
+
+<script>
+
+    /*
+    * traversing elements
+    * */
+    $(function () {
+        $('li').each(function (index) {
+            $(this).text($(this).html() + " " + index);
+
+            var $lis = $('li');
+
+            $lis.first().text('First item');
+            $lis.last().text('last item');
+            $('#item1').next().text("change the second item");
+            $('#item5').prev().text("change the last two item");
+
+            $('#item11').nextUntil($('#item55')).text("change the middle content");
+
+            $("#a").children().text("add a children content");
+            $("#b li:first-child").siblings().text("change sibling content");
+
+            var i = 0, str = "", parents = $('em').parents();
+            for (; i < parents.length; i++) {
+                str += parents[i].tagName + "|"
+            }
+            $("#out").text(str + parents.length);
+
+            $("li").has("span").text("item: has span");
+
+            // apply style
+//            $("#outter").text($("ol").css("color"));
+
+            var list = $("#list");
+
+            list.css("background-color", "blue").css("color", "yellow").css("width", "300");
+            list.css({
+                "background-color": "red",
+                "color": "blue",
+                "border": "3px solid green"
+            });
+
+            $("#list1").addClass("W300 yelFG, redBG");
+
+            var box = $("#box");
+            $("#w").text(box.width() + " or " + box.css('width'));
+            $("#h").text(box.height() + " or " + box.css("height"));
+
+            var str = "including padding -";
+            str += box.innerWidth() + "x" + box.innerHeight();
+            str += "<br>including padding and margin - ";
+            str += box.outerWidth() + "x" + box.outerHeight();
+            $("#outter").html(str);
+
+        });
+    });
+</script>
+
+</body>
+</html>
