@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.12.3.js"></script>
+    <style>
+        #box {
+            border: 2px solid red;
+            width: 200px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <!--<div id="box">click box</div>-->
+    <form action="">
+        <input type="text" id="txt" maxlength="1">
+    </form>
+    <p>output: <span id="out1"></span></p>
+
+<script>
+    $(function () {
+        var box = $("#box").click(function () {
+            $(this).css("background", "lime");
+            $(this).text("click detected");
+            $(this).text("click triggered");
+        });
+
+        box.dblclick(function () {
+            $(this).css("background", "blue");
+            $(this).text("double-click detected");
+        });
+
+        box.mousedown(function () {
+            $(this).text("mouse button pressed")
+        });
+        box.mouseup(function () {
+            $(this).text("mouse button released");
+        });
+
+        box.mouseover(function () {
+            $(this).text('over');
+        });
+        box.mouseout(function () {
+            $(this).text("out");
+        });
+
+        $("#box").mouseover(function (e) {
+            var left = e.pageX - this.offsetLeft;
+            var top = e.pageY - this.offsetTop;
+            $(this).text("x: " + left + " y: " + top);
+
+            if (left < 100) {
+                $(this).css("background", "yellow");
+            } else {
+                $(this).css("background", "aqua");
+            }
+        });
+
+
+
+        $("#txt").keypress(function (e) {
+            $(this).val(null);
+
+            var str = "non-alpha";
+            if((e.which > 64) && (e.which < 91)) {
+                str = "uppercase";
+            } else if ((e.which > 96) && (e.which < 123)) {
+                str = "lowercase";
+            }
+            $("#out1").text(str + " character pressed");
+
+        });
+
+        $("#txt").keydown(function (e) {
+            $("#out1").text("key " + e.which + " down");
+        });
+
+        // adjusting size
+        var num = 0, timer = null;
+
+        function showsize() {
+            num++;
+            var hue = (num % 2 === 0) ? "yellow" : "aqua";
+            $('div')
+        }
+
+
+    });
+
+
+
+
+</script>
+</body>
+</html>
